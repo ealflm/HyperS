@@ -2,7 +2,6 @@ MeasureTime = 0
 RealTime = 0
 DeltaTime = 0
 ElapsedTime = 0
-Paused = 0
 
 function Initialize()
 	MeasureTime = SKIN:GetMeasure(SELF:GetOption('TimeMeasure', 'MeasureTime'))
@@ -29,23 +28,12 @@ function Start()
   SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
 end
 
-function Pause()
-  Paused = 1
-  SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
-end
-
-function Resume()
-  Paused = 0
-  SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
-end
-
 function Reset()
-  SKIN:Bang("!EnableMeasure", "MeasureStopwatchScript")
-  SKIN:Bang("!DisableMeasure", "MeterStopwatchMainDisplay")
+  SKIN:Bang("!DisableMeasure", "MeasureStopwatchScript")
+  SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
 
   MeasureTime = 0
   RealTime = 0
   DeltaTime = 0
   ElapsedTime = 0
-  Paused = 0
 end
