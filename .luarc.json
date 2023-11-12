@@ -1,0 +1,12 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "measureTime",
+        "SKIN",
+        "SELF"
+    ],
+    "diagnostics.disable": [
+        "undefined-field",
+        "undefined-global"
+    ]
+}
