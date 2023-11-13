@@ -50,6 +50,8 @@ end
 function Iso8601ToWindowsTimestamp_7(iso8601)
   local year, month, day, hour, min, sec, msec = iso8601:match("(%d+)-(%d+)-(%d+)T(%d+):(%d+):(%d+).(%d+)Z")
   local timestamp = os.time{year=year, month=month, day=day, hour=hour, min=min, sec=sec}
+  SKIN:Bang("!Log", timestamp + 11644524000 + math.floor(msec / 100 + 0.5) / 10 - 1)
+  SKIN:Bang("!Log", MeasureTime:GetValue())
   return timestamp + 11644524000 + math.floor(msec / 100 + 0.5) / 10 - 1
 end
 
