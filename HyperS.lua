@@ -17,6 +17,7 @@ end
 function GetTime() return FormatTimeString(ElapsedTime) end
 
 function FormatTimeString(time)
+  time = (time < 0) and 0 or time
 	local hours = tostring(math.floor((time / 3600) % 24)):gsub('(.+)', '0%1'):gsub('^%d(%d%d)$', '%1')
 	local minutes = tostring(math.floor((time / 60) % 60)):gsub('(.+)', '0%1'):gsub('^%d(%d%d)$', '%1')
 	local seconds = tostring(math.floor(time % 60)):gsub('(.+)', '0%1'):gsub('^%d(%d%d)$', '%1')
@@ -47,13 +48,12 @@ function GetDelta()
 end
 
 function Iso8601ToWindowsTimestamp_7(iso8601)
-  local year, month, day, hour, min, sec = iso8601:match("(%d+)-(%d+)-(%d+)T(%d+):(%d+):(%d+)Z")
+  local year, month, day, hour, min, sec, msec = iso8601:match("(%d+)-(%d+)-(%d+)T(%d+):(%d+):(%d+).(%d+)Z")
   local timestamp = os.time{year=year, month=month, day=day, hour=hour, min=min, sec=sec}
-  return timestamp + 11644473600 + 25200 * 2
+  return timestamp + 11644524000 + math.floor(msec / 100 + 0.5) / 10 - 1
 end
 
 function Start()
-  SKIN:Bang("!Log", MeasureTime:GetValue())
   DeltaTime = GetDelta()
   if (DeltaTime ~= 0) then
     SKIN:Bang("!EnableMeasure", "MeasureStopwatchScript")
