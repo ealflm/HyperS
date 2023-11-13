@@ -1,4 +1,3 @@
-MeasureTime = 0
 RealTime = 0
 DeltaTime = 0
 ElapsedTime = 0
@@ -62,10 +61,10 @@ function Start()
 end
 
 function Reset()
+  SKIN:Bang("!Log", "Reset was called")
   SKIN:Bang("!DisableMeasure", "MeasureStopwatchScript")
   SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
 
-  MeasureTime = 0
   RealTime = 0
   DeltaTime = 0
   ElapsedTime = 0
