@@ -55,12 +55,14 @@ end
 function Start()
   DeltaTime = GetDelta()
   if (DeltaTime ~= 0) then
+    SKIN:Bang("!Show")
     SKIN:Bang("!EnableMeasure", "MeasureStopwatchScript")
     SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
   end
 end
 
 function Reset()
+  SKIN:Bang("!Hide")
   SKIN:Bang("!Log", "Reset was called")
   SKIN:Bang("!DisableMeasure", "MeasureStopwatchScript")
   SKIN:Bang("!UpdateMeter", "MeterStopwatchMainDisplay")
