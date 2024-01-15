@@ -17,7 +17,11 @@ function GetTime() return FormatTimeString(ElapsedTime) end
 
 function FormatTimeString(time)
   time = (time < 0) and 0 or time
-	local hours = tostring(math.floor((time / 3600) % 24)):gsub('(.+)', '0%1'):gsub('^%d(%d%d)$', '%1')
+
+  local hours = tostring(math.floor((time / 3600)))
+  if #hours == 1 then
+      hours = '0' .. hours
+  end
 	local minutes = tostring(math.floor((time / 60) % 60)):gsub('(.+)', '0%1'):gsub('^%d(%d%d)$', '%1')
 	local seconds = tostring(math.floor(time % 60)):gsub('(.+)', '0%1'):gsub('^%d(%d%d)$', '%1')
 	return hours .. ':' .. minutes .. ':' .. seconds
